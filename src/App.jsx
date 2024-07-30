@@ -6,7 +6,7 @@ export const App = () => {
   const [num, setNum] = useState(0);
 
   useEffect(() => {
-    console.log("num is chenged.");
+    console.log("num is changed.");
   },[num])
 
   const onClickButton = () => {
