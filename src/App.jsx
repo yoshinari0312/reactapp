@@ -1,25 +1,23 @@
-import { ColoredMessage } from "./components/index";
-import { useState, useEffect } from "react";
-import Button from '@mui/material/Button';
+import { Box, Button } from "@mui/material";
+import { useContext } from "react";
+import {Card} from "./components/Card"
+import { Context } from "./components/providers/Provider";
 
 export const App = () => {
-  const [num, setNum] = useState(0);
-
-  useEffect(() => {
-    console.log("num is changed.");
-  },[num])
-
-  const onClickButton = () => {
-    setNum(prevState => prevState + 1)
-  };
-
+  const {isAdmin, setIsAdmin} = useContext(Context)
   return (
-    <>
-      <h1 style={{color:"red"}}>こんにちは！</h1>
-      <ColoredMessage color="blue">"お元気ですか？"</ColoredMessage>
-      <ColoredMessage color="pink">"元気です！"</ColoredMessage>
-      <Button onClick={onClickButton} variant="contained" color="success" size="large">ボタン</Button>
-      <p>{num}</p>
-    </>
+    <Box>
+      {isAdmin?<span>管理者です</span>:<span>管理者以外です</span>}
+      <Button  variant="outlined"
+        onClick={() => {
+          setIsAdmin(!isAdmin)
+        }}
+      >
+        切り替え
+      </Button>
+      <Box display="flex" justifyContent="center" alignItems="center">
+        <Card/>
+      </Box>
+    </Box>
   );
-}
+};

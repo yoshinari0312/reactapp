@@ -1,4 +1,7 @@
-export const ColoredMessage = (props) => {
+import { memo } from "react";
+
+export const ColoredMessage = memo((props) => {
+  console.log("ColoredMessage");
   const contentStyle = {
     color: props.color,
     fontSize: "20px"
@@ -9,4 +12,4 @@ export const ColoredMessage = (props) => {
       <p style={contentStyle}>{props.children}</p>
     </>
   );
-}
+});
